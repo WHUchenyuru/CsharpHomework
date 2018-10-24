@@ -35,11 +35,12 @@ namespace topic1
             Console.Write("输入查询的商品名称：");
             string key1 = Console.ReadLine();
             var result1 = order.OrderList.Where(a => a.myDictionary[0] == key1);
+            Console.WriteLine(result1.ToString());
 
             Console.Write("输入查询的客户名称：");
             string key2 = Console.ReadLine();
             var result2 = order.OrderList.Where(a => a.myDictionary[2] == key2);
-
+           
             var result3 = order.OrderList.Where( a => Int32.Parse(a.myDictionary[3]) >= 20);
         }
     }

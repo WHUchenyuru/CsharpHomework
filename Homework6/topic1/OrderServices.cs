@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace topic1
 {
-    class OrderService
+    public class OrderService
     {
         //添加订单
         public static void Add(Order order, OrderDetails add) => order.OrderList.Add(add);
@@ -25,11 +24,11 @@ namespace topic1
         }
 
         //修改订单中商品数量
-        public static void Change(Order order, int index, int key, string s)
+        public static void Change(Order order, int index, int s)
         {
             try
             {
-                order.OrderList[index].myDictionary[key] = s;
+                order.OrderList[index].Num = s;
             }
             catch (Exception e)
             {
@@ -42,19 +41,27 @@ namespace topic1
         {
             for (int i = 0; i < order.OrderList.Count; i++)
             {
-                if (order.OrderList[i].myDictionary[0] == s || order.OrderList[i].myDictionary[1] == s || order.OrderList[i].myDictionary[2] == s)
+                if (order.OrderList[i].Name == s || order.OrderList[i].ClientName == s )
                     return i;
             }
             return -1;
         }
 
-        //打印订单
-        public static void printOrder(Order order)
+        //XML序列化
+        public static void Export(XmlSerializer ser, string FileName, object obj)
         {
-            foreach (OrderDetails od in order.OrderList)
-            {
-                Console.WriteLine(od.myDictionary[0] + " " + od.myDictionary[1] + " " + od.myDictionary[2] + " " + od.myDictionary[3] + " " + od.myDictionary[4]);
-            }
-        }        
+            FileStream fs = new FileStream(FileName, FileMode.Create);
+            ser.Serialize(fs, obj);
+            fs.Close();
+        }
+
+        //XML反序列化
+        public static object Import(XmlSerializer ser , string FileName)
+        {
+            FileStream fs = new FileStream(FileName , FileMode.Open);
+            object obj = ser.Deserialize(fs);
+            fs.Close();
+            return obj;
+        }
     }
 }

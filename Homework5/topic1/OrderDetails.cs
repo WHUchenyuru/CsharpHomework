@@ -17,5 +17,20 @@ namespace topic1
             myDictionary[3] = num;           //订购数量
             myDictionary[4] = price;         //商品价格
         }
+
+        public override string ToString()
+        {
+
+            string result = "================================================================================\n";
+
+            result += $"orderId:{myDictionary[1]}, customer:({myDictionary[2]}),Amount:{myDictionary[3]}";
+
+            //Order.ForEach(od => result += "\n\t" + od);
+
+            result += "\n================================================================================";
+
+            return result;
+
+        }
     }
 }
