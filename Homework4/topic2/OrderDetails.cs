@@ -8,14 +8,18 @@ namespace topic2
 {
     public class OrderDetails
     {
-        public Dictionary<int, string> myDictionary = new Dictionary<int, string>();
-        public OrderDetails(string name = "", string id = "", string clientName = "", string num = "", string price = "")
+        public string Name { get; set; }            //商品名称
+        public int ID { get; set; }                 //商品订单号
+        public string ClientName { get; set; }      //客户名称
+        public int Num { get; set; }                //订购数量
+        public int Price { get; set; }                  //商品价值
+        public OrderDetails(string name, int id, string clientname, int num, int price)
         {
-            myDictionary[0] = name;          //商品名称
-            myDictionary[1] = id;            //商品订单号
-            myDictionary[2] = clientName;    //客户名称
-            myDictionary[3] = num;           //订购数量
-            myDictionary[4] = price;         //商品价格
+            Name = name;
+            ID = id;
+            ClientName = clientname;
+            Num = num;
+            Price = price;
         }
     }
 }

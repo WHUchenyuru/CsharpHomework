@@ -25,11 +25,11 @@ namespace topic2
         }
 
         //修改订单中商品数量
-        public static void Change(Order order,int index , int key , string s)
+        public static void Change(Order order, int index, int s)
         {
             try
             {
-                order.OrderList[index].myDictionary[key] = s;
+                order.OrderList[index].Num = s;
             }
             catch (Exception e)
             {
@@ -38,11 +38,11 @@ namespace topic2
         }
 
         //订单查询
-        public static int Find(Order order , string s)
+        public static int Find(Order order, string s)
         {
-            for(int i = 0; i < order.OrderList.Count; i++)
+            for (int i = 0; i < order.OrderList.Count; i++)
             {
-                if (order.OrderList[i].myDictionary[0] == s || order.OrderList[i].myDictionary[1] == s || order.OrderList[i].myDictionary[2] == s)
+                if (order.OrderList[i].Name == s || order.OrderList[i].ClientName == s)
                     return i;
             }
             return -1;
