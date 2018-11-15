@@ -13,7 +13,7 @@ namespace topic1
 {
     public partial class Form2 : Form
     {
-        public OrderDetails orderDetails = new OrderDetails("", 0, "", 0, 0);
+        public OrderDetails orderDetails = new OrderDetails("", "", "", 0, 0, "");
         public Form2()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace topic1
         private void button1_Click(object sender, EventArgs e)
         {
             string name = textBox1.Text;
-            int id = Int32.Parse(textBox2.Text);
+            string id = textBox2.Text;
             string cilentname = textBox3.Text;
             int num = Int32.Parse(textBox4.Text);
             int price = Int32.Parse(textBox5.Text);
@@ -36,6 +36,11 @@ namespace topic1
             Form1 form1 = new Form1();
             form1.order.OrderList.Add(orderDetails);
             form1.Show();
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

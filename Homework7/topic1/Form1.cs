@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using System.Linq;
 using topic2;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace topic1
 {
@@ -12,11 +14,24 @@ namespace topic1
         public Form1()
         {
             InitializeComponent();
-            order.OrderList.Add(new OrderDetails("a", 0, "John", 45, 3));
-            order.OrderList.Add(new OrderDetails("b", 1, "Jack", 46, 2));
+            order.OrderList.Add(new OrderDetails("a", "20180131", "John", 45, 3, "13457857659"));
+            order.OrderList.Add(new OrderDetails("b", "20180123", "Jack", 46, 2, "158725638745"));
+            //检验订单号以及手机号
+            foreach(OrderDetails od in order.OrderList)
+            {
+                if (!(RegexTest.OrderNumTest(od.ID) && RegexTest.PhoneTest(od.Phone)))
+                {
+                    Form4 form4 = new Form4();
+                    form4.ShowDialog();
+                }
+            }
+
+     
+            //数据绑定
             bindingSource1.DataSource = order.OrderList;
             //绑定查询条件
             textBox1.DataBindings.Add("Text", this, "KeyWord");
+
         }
 
         private void Form1_Load(object sender, EventArgs e)

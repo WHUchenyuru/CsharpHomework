@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace topic2
 {
-    class OrderService
+    public class OrderService
     {
         //添加订单
         public static void Add(Order order, OrderDetails add) => order.OrderList.Add(add);
@@ -46,6 +48,13 @@ namespace topic2
                     return i;
             }
             return -1;
+        }
+        //XML序列化
+        public static void Export(XmlSerializer ser, string FileName, object obj)
+        {
+            FileStream fs = new FileStream(FileName, FileMode.Create);
+            ser.Serialize(fs, obj);
+            fs.Close();
         }
     }
 }
